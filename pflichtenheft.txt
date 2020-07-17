@@ -1,0 +1,37 @@
+﻿Die GerasDB, die ich programmiert habe, arbeitet mit einem CRDT (conflict-free replicated data type) damit Daten zwischen verschiedenen Instanzen reibungslos repliziert werden können.
+
+
+Um sicherzustellen das es keinen SPOF (Single Point of Failure) in einer Transaktion (zb. create, delte) gibt, löst GerasDB den HTTP req. erst mit 200 auf wenn mindestens 2 GerasDB Instanzen die neue Transaktion verarbeitet haben.
+Dieses Vorgehen verhindert außerdem das seltene aber fatale auftreten von Miskalkulation auf Grund von zb. kosmischer Strahlung [1] oder Designfehler der CPU [2].
+
+
+Zusätzlich benutzt GerasDB CRC (cyclic redundancy check) um korrupte Dateien zu identifizieren.
+
+
+Die GerasDB Instanzen überprüfen sich selbst auf Datenintegrität und die Qualität der Redundanz, so wird zb. wenn ein Fehler in einem Datenblock festgestellt wird automatisch von anderen verbundenen GerasDB instanzen die einem GerasDB Cluster zugewiesen wurden der beschädigte Datenblock nachgeladen und die betroffene GerasDB Instanz als “potentially damaged” registriert.
+
+
+Im Rahmen dieses Projektes wird eine Testsuit gebaut die folgende Funktionen der GerasDB testet.
+Die GerasDB wird hierbei durch Wikinota angesteuert.
+
+0. das lesen von Daten
+1. das anlegen von Daten
+2. das löschen von Daten
+3. die replikation zwischen 2 oder mehr GerasDB instanzen.
+4. (OPTIONAL) das testweise auslösen eines “Datenblockfehlers” und das testen der darauf folgenden “heilung”
+5. (OPTIONAL) benchmarking der Bereitstellung von Datenblöcken.
+6. (OPTIONAL) benchmarking der Distribution von Daten
+
+Die Ausgabe der Testresultate findet durch ein CLI statt, da das entstehende Programm in einer Continuous Testing Pipeline integriert werden muss um einen nachhaltigen Benefit für das GerasDB und Wikinota Projekt zu erbringen.
+
+[1]
+“Studies by IBM in the 1990s suggest that computers typically experience about one cosmic-ray-induced error per 256 megabytes of RAM per month”
+https://en.wikipedia.org/wiki/Cosmic_ray#Effect_on_electronics
+
+“About a third of machines and over 8% of DIMMs inour fleet saw at least one correctable error per year. Ourper-DIMM rates of correctable errors translate to an aver-age of 25,000–75,000 FIT (failures in time per billion hoursof operation) per Mbit and a median FIT range of 778 –25,000 per Mbit (median for DIMMs with errors), while pre-vious studies report 200-5,000 FIT per Mbit. The number ofcorrectable errors per DIMM is highly variable, with someDIMMs experiencing a huge number of errors, compared toothers. The annual incidence of uncorrectable errors was1.3% per machine and 0.22% per DIMM.”
+http://www.cs.toronto.edu/~bianca/papers/sigmetrics09.pdf
+
+
+
+
+[2]  Pentium FDIV bug https://en.wikipedia.org/wiki/Pentium_FDIV_bug

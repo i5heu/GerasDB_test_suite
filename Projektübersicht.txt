@@ -1,0 +1,17 @@
+Die in Rust geschriebene GerasDB hatt einige Probleme gemacht da hier als BackEndLayer SQLite benutzt wird.
+Das Webframework “actix” ist von natur aus Multithreaded, jedoch SQLite nicht was dazu geführt hat das man die transaktionen zwischen den threads und SQLite poolen muss um keine race condition zu erzeugen. 
+Dieses Vorgehen hat zu einigen Verwirrungen geführt da das Typesystem das für mich neu ist unintuitiv in diesem Fall agiert und wenig Dokumentation vorhanden war.
+
+Die Erstellung des C# Programms verlief ohne Probleme.
+
+Wie weit ist das Projekt?:
+
+Aufgrund der aufgetretenen Probleme war es mir leider nicht mehr möglich die alle von mir gesetzten Ziele zu erreich.
+
+So ist nun nur das Speichern und das Lesen von Objekten möglich.
+
+Wie Sieht die Zukunft aus?:
+
+Ich habe ein großes Interesse an diesem Projekt weiter zu arbeiten, da daran mein Wissensmanagementsystem hängt das ich aufbaue.
+
+Das Projekt wird weitergeführt und auch bereits in meiner Testing Suite benutzt (sozusagen Produktiv).
