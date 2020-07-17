@@ -15,3 +15,8 @@ Wie Sieht die Zukunft aus?:
 Ich habe ein großes Interesse an diesem Projekt weiter zu arbeiten, da daran mein Wissensmanagementsystem hängt das ich aufbaue.
 
 Das Projekt wird weitergeführt und auch bereits in meiner Testing Suite benutzt (sozusagen Produktiv).
+
+GitHub:
+https://github.com/i5heu/GerasDB_test_suite/
+https://github.com/i5heu/wikinota
+https://github.com/i5heu/gerasdb
